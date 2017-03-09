@@ -19,7 +19,7 @@
   ctx.lineJoin = 'round'
   ctx.strokeStyle = '#A55BAD'
 
-  let isDrawing = true
+  let isDrawing = false
   let lastX = 0
   let lastY = 0
 
@@ -32,7 +32,19 @@
     ctx.stroke()
   }
 
+  function startDrawing (e) {
+    [lastX, lastY] = [e.offsetX, e.offsetY]
+    isDrawing = true
+  }
+
+  function stopDrawing () {
+    isDrawing = false
+  }
+
   canvas.addEventListener('mousemove', draw)
+  canvas.addEventListener('mousedown', startDrawing)
+  canvas.addEventListener('mouseup', stopDrawing)
+  canvas.addEventListener('mouseout', stopDrawing)
 </script>
 
 <style>
