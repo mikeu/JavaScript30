@@ -19,6 +19,7 @@
   ctx.lineJoin = 'round'
   let hue = 0
   let size = 1
+  let size_inc = 1
 
   let isDrawing = false
   let lastX = 0
@@ -29,7 +30,9 @@
 
     hue++
     if (hue >= 360) { hue = 0 }
-    size++
+
+    size += size_inc
+    if (size >= 60 || size <= 1) { size_inc *= -1 }
 
     ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`
     ctx.lineWidth = size
